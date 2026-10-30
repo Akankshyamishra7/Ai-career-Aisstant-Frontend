@@ -61,7 +61,7 @@ export default function Home() {
   }, [analysis]);
 
   return (
-    <div className="min-h-screen bg-[#0A0C10] flex flex-col selection:bg-[#D4AF37]/30 selection:text-white">
+    <div className="min-h-screen bg-[#06090F] flex flex-col selection:bg-indigo-500/30 selection:text-white">
       {/* Top Navbar */}
       <Navbar
         activeTab={activeTab}
@@ -130,15 +130,15 @@ export default function Home() {
       </main>
 
       {/* Footer */}
-      <footer className="border-t border-white/[0.06] bg-[#0A0C10] py-6 text-center text-xs text-zinc-500">
+      <footer className="border-t border-white/[0.06] bg-[#06090F]/90 backdrop-blur-xl py-6 text-center text-xs text-slate-500">
         <div className="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-2">
-          <div className="flex items-center gap-1.5">
-            <span className="font-semibold text-zinc-400">AI Career Assistant</span>
+          <div className="flex items-center gap-1.5 font-medium">
+            <span className="font-bold text-slate-300">CareerAI Pro</span>
             <span>—</span>
-            <span className="text-zinc-500">Next.js 15, FastAPI, TF-IDF + Scikit-Learn & Multi-LLM</span>
+            <span className="text-slate-400">Next.js 15, FastAPI, TF-IDF + Scikit-Learn & Multi-LLM Mentorship</span>
           </div>
-          <div>
-            Champagne Gold & Matte Black Enterprise Edition • 100% Production Ready
+          <div className="font-mono text-[11px] text-slate-400">
+            Obsidian & Cyber Violet Theme • 100% Production Ready
           </div>
         </div>
       </footer>

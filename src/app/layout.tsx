@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "AI Career Assistant | Predictive Career Intelligence",
-  description: "Enterprise AI Career Platform powered by Next.js, FastAPI, TF-IDF + Scikit-Learn Machine Learning, and Multi-LLM Mentorship.",
+  title: "AI Career Assistant | Predictive Tech Career Intelligence",
+  description: "Enterprise-grade career intelligence platform powered by Next.js 15, FastAPI, Scikit-Learn, and Contextual AI Mentorship.",
 };
 
 export default function RootLayout({
@@ -13,7 +13,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="dark h-full antialiased">
-      <body className="min-h-full flex flex-col bg-[#0A0C10] text-[#F1F4F9] selection:bg-[#D4AF37]/30 selection:text-white">
+      <body className="min-h-full flex flex-col bg-[#06090F] text-slate-100 selection:bg-indigo-500/30 selection:text-white relative font-sans">
+        {/* Subtle background ambient glow */}
+        <div className="fixed inset-0 bg-mesh-dark pointer-events-none -z-10" />
         {children}
       </body>
     </html>

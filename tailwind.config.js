@@ -10,33 +10,42 @@ module.exports = {
     extend: {
       colors: {
         dark: {
-          bg: "#0A0C10",
-          card: "#12151D",
-          hover: "#181D28",
+          950: "#04070D", // Deepest obsidian void
+          900: "#090D16", // Background base
+          850: "#0F1422", // Card background
+          800: "#161D30", // Elevated surface
+          750: "#1E273E", // Hover surface
           border: "rgba(255, 255, 255, 0.08)",
-          subtle: "#8A94A6",
+          subtle: "#94A3B8",
         },
-        gold: {
-          50: "#FAF7EE",
-          100: "#F4ECD3",
-          200: "#E9D8A4",
-          300: "#DFC173",
-          400: "#D8AF4E",
-          500: "#D4AF37", // Primary Champagne Gold
-          600: "#BA952A",
-          700: "#947321",
-          800: "#775B21",
-          900: "#634B20",
-          glow: "rgba(212, 175, 55, 0.25)",
+        brand: {
+          50: "#EEF2FF",
+          100: "#E0E7FF",
+          200: "#C7D2FE",
+          300: "#A5B4FC",
+          400: "#818CF8",
+          500: "#6366F1", // Primary Indigo
+          600: "#4F46E5",
+          700: "#4338CA",
+          800: "#3730A3",
+          900: "#312E81",
+        },
+        accent: {
+          cyan: "#06B6D4",
+          violet: "#8B5CF6",
+          emerald: "#10B981",
+          rose: "#F43F5E",
+          amber: "#F59E0B",
         },
       },
       fontFamily: {
-        sans: ["var(--font-geist-sans)", "system-ui", "sans-serif"],
-        mono: ["var(--font-geist-mono)", "monospace"],
+        sans: ["'Plus Jakarta Sans'", "system-ui", "-apple-system", "BlinkMacSystemFont", "sans-serif"],
+        mono: ["'JetBrains Mono'", "monospace"],
       },
       backgroundImage: {
-        "gold-gradient": "linear-gradient(135deg, #F3E7C4 0%, #D4AF37 50%, #AA8222 100%)",
-        "gold-glow": "radial-gradient(ellipse at top, rgba(212, 175, 55, 0.15), transparent 70%)",
+        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
+        "brand-gradient": "linear-gradient(135deg, #6366F1 0%, #8B5CF6 50%, #06B6D4 100%)",
+        "mesh-dark": "radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.12) 0px, transparent 50%), radial-gradient(at 100% 0%, rgba(139, 92, 246, 0.10) 0px, transparent 50%), radial-gradient(at 50% 100%, rgba(6, 182, 212, 0.08) 0px, transparent 50%)",
       },
     },
   },

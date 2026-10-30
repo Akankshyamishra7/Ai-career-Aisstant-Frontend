@@ -34,7 +34,6 @@ export const InterviewSimulator: React.FC<InterviewSimulatorProps> = ({
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  // Candidate practice answer state
   const [candidateAnswer, setCandidateAnswer] = useState("");
   const [evaluating, setEvaluating] = useState(false);
   const [evaluation, setEvaluation] = useState<AnswerEvaluationResponse | null>(null);
@@ -110,31 +109,31 @@ export const InterviewSimulator: React.FC<InterviewSimulatorProps> = ({
   return (
     <div className="space-y-8 animate-in fade-in duration-500">
       {/* Header and Controls */}
-      <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 glass-panel-gold rounded-2xl p-6 sm:p-8">
+      <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 glass-panel-brand rounded-3xl p-6 sm:p-10">
         <div className="space-y-2 max-w-2xl">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-gold-500/10 text-gold-300 border border-gold-500/30">
-            <Sparkles className="w-3.5 h-3.5 text-gold-400" />
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-indigo-500/15 text-indigo-300 border border-indigo-500/30">
+            <Sparkles className="w-3.5 h-3.5 text-cyan-400" />
             <span>Interactive Multi-Round Technical & STAR Simulator</span>
           </div>
-          <h1 className="text-2xl sm:text-3xl font-extrabold text-white">
-            AI Interview Simulator & <span className="gold-text-gradient">Rubric Evaluator</span>
+          <h1 className="text-2xl sm:text-4xl font-extrabold text-white tracking-tight">
+            AI Interview Simulator & <span className="brand-text-gradient">Rubric Evaluator</span>
           </h1>
-          <p className="text-xs sm:text-sm text-zinc-300 leading-relaxed">
+          <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
             Practice realistic Technical, System Design, Coding, and STAR-based behavioral interview questions
-            with real-time AI scoring and improvement tips.
+            with real-time AI scoring, identified strengths, and targeted improvement feedback.
           </p>
         </div>
 
         {/* Role Selector */}
-        <div className="bg-[#0E1117] p-4 rounded-xl border border-white/10 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+        <div className="bg-[#090D16] p-4 rounded-2xl border border-white/10 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
           <div>
-            <label className="text-[11px] uppercase tracking-wider text-zinc-400 font-bold block mb-1">
+            <label className="text-[10px] uppercase tracking-widest text-slate-400 font-bold block mb-1 font-mono">
               Interview Role
             </label>
             <select
               value={role}
               onChange={(e) => setRole(e.target.value)}
-              className="bg-[#141822] border border-white/10 rounded-lg px-3 py-2 text-xs font-semibold text-white focus:outline-none focus:border-gold-500/50"
+              className="bg-[#0D121F] border border-white/10 rounded-xl px-3.5 py-2 text-xs font-bold text-white focus:outline-none focus:border-indigo-500/50"
             >
               {ROLES_LIST.map((r) => (
                 <option key={r} value={r}>
@@ -147,16 +146,16 @@ export const InterviewSimulator: React.FC<InterviewSimulatorProps> = ({
           <button
             onClick={() => fetchQuestions(role)}
             disabled={loading}
-            className="self-end sm:self-auto mt-auto px-4 py-2 rounded-lg text-xs font-bold bg-gold-gradient text-black hover:opacity-95 transition-all shadow-[0_0_12px_rgba(212,175,55,0.2)] flex items-center justify-center gap-1.5"
+            className="self-end sm:self-auto mt-auto px-5 py-2.5 rounded-xl text-xs font-bold bg-gradient-to-r from-indigo-500 to-cyan-500 text-white hover:opacity-95 transition-all shadow-[0_0_15px_rgba(99,102,241,0.3)] flex items-center justify-center gap-2"
           >
-            {loading ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Zap className="w-3.5 h-3.5 fill-black" />}
-            <span>Refresh Questions</span>
+            {loading ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Zap className="w-3.5 h-3.5" />}
+            <span>Refresh Bank</span>
           </button>
         </div>
       </div>
 
       {error && (
-        <div className="p-4 rounded-xl bg-red-500/10 border border-red-500/20 text-red-300 text-xs">
+        <div className="p-4 rounded-xl bg-rose-500/10 border border-rose-500/20 text-rose-300 text-xs">
           {error}
         </div>
       )}
@@ -165,26 +164,26 @@ export const InterviewSimulator: React.FC<InterviewSimulatorProps> = ({
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
         {/* Left Column: Questions List (4 cols) */}
         <div className="lg:col-span-4 space-y-4">
-          <div className="glass-panel rounded-2xl p-4 sm:p-5 space-y-3">
+          <div className="glass-panel rounded-3xl p-5 space-y-3">
             <div className="flex items-center justify-between">
-              <span className="text-xs font-bold uppercase tracking-wider text-zinc-400">
+              <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 font-mono">
                 Question Bank
               </span>
-              <span className="text-xs text-gold-400 font-bold">
-                {questions.length} Generated
+              <span className="text-xs text-cyan-300 font-bold font-mono">
+                {questions.length} Items
               </span>
             </div>
 
             {/* Type filters */}
-            <div className="flex items-center gap-1 flex-wrap">
+            <div className="flex items-center gap-1.5 flex-wrap">
               {["All", "Technical", "Behavioral", "System"].map((t) => (
                 <button
                   key={t}
                   onClick={() => setSelectedTypeFilter(t)}
-                  className={`px-2 py-0.5 rounded text-[11px] font-medium transition-all ${
+                  className={`px-2.5 py-1 rounded-lg text-xs font-semibold transition-all ${
                     selectedTypeFilter === t
-                      ? "bg-gold-500 text-black font-bold"
-                      : "bg-white/[0.03] text-zinc-400 hover:text-white"
+                      ? "bg-indigo-600 text-white shadow-sm"
+                      : "bg-[#090D16] text-slate-400 hover:text-white"
                   }`}
                 >
                   {t}
@@ -193,7 +192,7 @@ export const InterviewSimulator: React.FC<InterviewSimulatorProps> = ({
             </div>
 
             {/* Questions mini cards */}
-            <div className="space-y-2 max-h-[500px] overflow-y-auto pr-1">
+            <div className="space-y-2.5 max-h-[500px] overflow-y-auto pr-1">
               {filteredQuestions.map((q, idx) => {
                 const isSelected = questions[selectedQuestionIndex]?.id === q.id;
                 return (
@@ -207,19 +206,19 @@ export const InterviewSimulator: React.FC<InterviewSimulatorProps> = ({
                         setCandidateAnswer("");
                       }
                     }}
-                    className={`p-3 rounded-xl cursor-pointer transition-all border ${
+                    className={`p-3.5 rounded-2xl cursor-pointer transition-all border ${
                       isSelected
-                        ? "bg-gold-500/15 border-gold-500/50 shadow-[0_0_12px_rgba(212,175,55,0.15)]"
-                        : "bg-[#0E1117] border-white/5 hover:border-gold-500/30"
+                        ? "bg-indigo-500/15 border-indigo-400/50 shadow-[0_0_15px_rgba(99,102,241,0.2)]"
+                        : "bg-[#090D16] border-white/5 hover:border-indigo-500/30"
                     }`}
                   >
-                    <div className="flex items-center justify-between mb-1">
-                      <span className="text-[10px] font-bold text-zinc-500">Q{idx + 1}</span>
-                      <span className="text-[10px] px-1.5 py-0.5 rounded bg-white/[0.04] text-gold-300 font-medium">
+                    <div className="flex items-center justify-between mb-1.5">
+                      <span className="text-[10px] font-bold text-slate-400 font-mono">Q{idx + 1}</span>
+                      <span className="text-[10px] px-2 py-0.5 rounded-md bg-white/[0.04] text-cyan-200 font-semibold font-mono">
                         {q.type.split("(")[0].trim()}
                       </span>
                     </div>
-                    <p className="text-xs text-zinc-200 line-clamp-2 font-medium">
+                    <p className="text-xs text-slate-200 line-clamp-2 font-medium">
                       {q.question}
                     </p>
                   </div>
@@ -232,36 +231,36 @@ export const InterviewSimulator: React.FC<InterviewSimulatorProps> = ({
         {/* Right Column: Active Question + Answer Area + AI Feedback (8 cols) */}
         <div className="lg:col-span-8 space-y-6">
           {currentQuestion ? (
-            <div className="glass-panel rounded-2xl p-6 sm:p-8 space-y-6">
+            <div className="glass-panel rounded-3xl p-6 sm:p-8 space-y-6">
               {/* Question Header */}
               <div className="space-y-3 pb-6 border-b border-white/[0.08]">
-                <div className="flex items-center gap-2">
-                  <span className="px-3 py-1 rounded-full text-xs font-bold bg-gold-500/15 text-gold-300 border border-gold-500/30">
+                <div className="flex items-center gap-2.5">
+                  <span className="px-3 py-1 rounded-full text-xs font-bold bg-indigo-500/20 text-cyan-300 border border-indigo-500/30 font-mono">
                     {currentQuestion.type}
                   </span>
-                  <span className="text-xs text-zinc-400">
+                  <span className="text-xs text-slate-400 font-mono">
                     Question #{selectedQuestionIndex + 1} of {questions.length}
                   </span>
                 </div>
 
-                <h2 className="text-lg sm:text-xl font-bold text-white leading-relaxed">
+                <h2 className="text-lg sm:text-2xl font-bold text-white leading-relaxed">
                   {currentQuestion.question}
                 </h2>
 
-                {/* Why interviewers ask this */}
-                <div className="p-3 rounded-xl bg-[#0E1117] border border-white/5 text-xs text-zinc-400 flex items-start gap-2">
-                  <HelpCircle className="w-4 h-4 text-gold-400 shrink-0 mt-0.5" />
+                {/* Intent */}
+                <div className="p-3.5 rounded-2xl bg-[#090D16] border border-white/5 text-xs text-slate-300 flex items-start gap-2.5">
+                  <HelpCircle className="w-4 h-4 text-cyan-400 shrink-0 mt-0.5" />
                   <div>
-                    <span className="font-semibold text-zinc-300">Interviewer Intent: </span>
+                    <span className="font-bold text-white">Interviewer Intent: </span>
                     {currentQuestion.why_asked}
                   </div>
                 </div>
 
-                {/* Key Points / Answer Outline Toggle */}
+                {/* Outline Toggle */}
                 <div>
                   <button
                     onClick={() => setShowAnswerOutline(!showAnswerOutline)}
-                    className="flex items-center gap-1.5 text-xs font-semibold text-gold-400 hover:text-gold-300 transition-colors"
+                    className="flex items-center gap-1.5 text-xs font-bold text-cyan-300 hover:text-cyan-200 transition-colors"
                   >
                     <Lightbulb className="w-3.5 h-3.5" />
                     <span>{showAnswerOutline ? "Hide Sample Rubric Outline" : "View Sample Rubric Outline"}</span>
@@ -269,18 +268,18 @@ export const InterviewSimulator: React.FC<InterviewSimulatorProps> = ({
                   </button>
 
                   {showAnswerOutline && (
-                    <div className="mt-3 p-4 rounded-xl bg-[#141822] border border-gold-500/20 text-xs text-zinc-300 space-y-3 animate-in fade-in duration-200">
+                    <div className="mt-3 p-4 rounded-2xl bg-[#090D16] border border-indigo-500/20 text-xs text-slate-300 space-y-3 animate-in fade-in duration-200">
                       <div>
-                        <span className="font-bold text-gold-300 block mb-1">Key Points to Hit:</span>
-                        <ul className="list-disc list-inside space-y-1 text-zinc-300">
+                        <span className="font-bold text-cyan-200 block mb-1">Key Points to Cover:</span>
+                        <ul className="list-disc list-inside space-y-1 text-slate-300">
                           {currentQuestion.key_points_to_cover.map((point, pIdx) => (
                             <li key={pIdx}>{point}</li>
                           ))}
                         </ul>
                       </div>
                       <div className="border-t border-white/5 pt-2">
-                        <span className="font-bold text-gold-300 block mb-1">Sample Answer Outline:</span>
-                        <p className="text-zinc-400 italic leading-relaxed">
+                        <span className="font-bold text-cyan-200 block mb-1">Sample Answer Outline:</span>
+                        <p className="text-slate-400 italic leading-relaxed">
                           &ldquo;{currentQuestion.sample_answer_outline}&rdquo;
                         </p>
                       </div>
@@ -293,10 +292,10 @@ export const InterviewSimulator: React.FC<InterviewSimulatorProps> = ({
               <div className="space-y-3">
                 <div className="flex items-center justify-between">
                   <span className="text-xs font-bold text-white flex items-center gap-1.5">
-                    <Mic className="w-4 h-4 text-gold-400" />
+                    <Mic className="w-4 h-4 text-cyan-400" />
                     Your Answer (Simulate Mock Response)
                   </span>
-                  <span className="text-xs text-zinc-500">
+                  <span className="text-xs text-slate-500 font-mono">
                     {candidateAnswer.split(/\s+/).filter(Boolean).length} words
                   </span>
                 </div>
@@ -305,15 +304,15 @@ export const InterviewSimulator: React.FC<InterviewSimulatorProps> = ({
                   rows={6}
                   value={candidateAnswer}
                   onChange={(e) => setCandidateAnswer(e.target.value)}
-                  placeholder="Type your interview response here. Mention specific metrics, STAR situation/task/actions, and architectural reasoning to achieve a 9+ score..."
-                  className="w-full rounded-xl bg-[#0E1117] border border-white/10 p-4 text-xs sm:text-sm text-zinc-200 focus:outline-none focus:border-gold-500/50 resize-y"
+                  placeholder="Type your response here. Include specific metrics, architectural choices, and the STAR methodology to score 9+..."
+                  className="w-full rounded-2xl bg-[#090D16] border border-white/10 p-4 text-xs sm:text-sm text-slate-200 focus:outline-none focus:border-indigo-500/50 resize-y"
                 />
 
                 <div className="flex justify-end">
                   <button
                     onClick={handleEvaluateAnswer}
                     disabled={!candidateAnswer.trim() || evaluating}
-                    className="flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-bold bg-gold-gradient text-black hover:opacity-95 disabled:opacity-40 transition-all shadow-[0_0_15px_rgba(212,175,55,0.25)]"
+                    className="flex items-center gap-2 px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-gradient-to-r from-indigo-500 to-cyan-500 text-white hover:opacity-95 disabled:opacity-40 transition-all shadow-[0_0_20px_rgba(99,102,241,0.3)]"
                   >
                     {evaluating ? (
                       <>
@@ -322,7 +321,7 @@ export const InterviewSimulator: React.FC<InterviewSimulatorProps> = ({
                       </>
                     ) : (
                       <>
-                        <Send className="w-3.5 h-3.5 fill-black" />
+                        <Send className="w-3.5 h-3.5" />
                         <span>Submit for AI Evaluation</span>
                       </>
                     )}
@@ -332,15 +331,15 @@ export const InterviewSimulator: React.FC<InterviewSimulatorProps> = ({
 
               {/* Real-time AI Evaluation Output */}
               {evaluation && (
-                <div className="p-6 rounded-2xl glass-panel-gold space-y-4 animate-in fade-in duration-300">
+                <div className="p-6 rounded-2xl glass-panel-brand space-y-4 animate-in fade-in duration-300">
                   <div className="flex items-center justify-between pb-3 border-b border-white/[0.08]">
                     <div className="flex items-center gap-2">
-                      <Sparkles className="w-5 h-5 text-gold-400" />
+                      <Sparkles className="w-5 h-5 text-cyan-400" />
                       <h3 className="text-base font-bold text-white">AI Evaluation Report</h3>
                     </div>
                     <div className="flex items-center gap-2">
-                      <span className="text-xs text-zinc-400">Score:</span>
-                      <span className="text-xl font-black text-white px-3 py-0.5 rounded-full bg-gold-500/20 border border-gold-500/40 text-gold-300">
+                      <span className="text-xs text-slate-400 font-mono">Score:</span>
+                      <span className="text-xl font-black text-white px-3.5 py-0.5 rounded-full bg-indigo-500/20 border border-indigo-500/40 text-cyan-300 font-mono">
                         {evaluation.score} / 10
                       </span>
                     </div>
@@ -348,12 +347,12 @@ export const InterviewSimulator: React.FC<InterviewSimulatorProps> = ({
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     {/* Strengths */}
-                    <div className="bg-[#0E1117] p-4 rounded-xl border border-emerald-500/20 space-y-2">
+                    <div className="bg-[#090D16] p-4 rounded-xl border border-emerald-500/20 space-y-2">
                       <span className="text-xs font-bold text-emerald-400 flex items-center gap-1.5">
                         <CheckCircle2 className="w-4 h-4 text-emerald-400" />
                         Identified Strengths
                       </span>
-                      <ul className="text-xs text-zinc-300 space-y-1">
+                      <ul className="text-xs text-slate-300 space-y-1">
                         {evaluation.strengths.map((s, idx) => (
                           <li key={idx} className="flex items-start gap-1.5">
                             <span className="text-emerald-400 mt-0.5">•</span>
@@ -364,12 +363,12 @@ export const InterviewSimulator: React.FC<InterviewSimulatorProps> = ({
                     </div>
 
                     {/* Improvements */}
-                    <div className="bg-[#0E1117] p-4 rounded-xl border border-amber-500/20 space-y-2">
+                    <div className="bg-[#090D16] p-4 rounded-xl border border-amber-500/20 space-y-2">
                       <span className="text-xs font-bold text-amber-400 flex items-center gap-1.5">
                         <AlertTriangle className="w-4 h-4 text-amber-400" />
-                        Areas for Optimization
+                        Areas for Improvement
                       </span>
-                      <ul className="text-xs text-zinc-300 space-y-1">
+                      <ul className="text-xs text-slate-300 space-y-1">
                         {evaluation.improvements.map((imp, idx) => (
                           <li key={idx} className="flex items-start gap-1.5">
                             <span className="text-amber-400 mt-0.5">•</span>
@@ -381,16 +380,16 @@ export const InterviewSimulator: React.FC<InterviewSimulatorProps> = ({
                   </div>
 
                   {/* Model Answer Tip */}
-                  <div className="p-3.5 rounded-xl bg-gold-500/10 border border-gold-500/20 text-xs text-zinc-300">
-                    <span className="font-bold text-gold-300">Expert Interviewer Tip: </span>
+                  <div className="p-3.5 rounded-xl bg-indigo-500/10 border border-indigo-500/20 text-xs text-slate-300">
+                    <span className="font-bold text-cyan-300">Expert Interviewer Tip: </span>
                     {evaluation.model_answer_tip}
                   </div>
                 </div>
               )}
             </div>
           ) : (
-            <div className="glass-panel rounded-2xl p-12 text-center text-xs text-zinc-400">
-              No questions found. Click &ldquo;Refresh Questions&rdquo; to generate interview items.
+            <div className="glass-panel rounded-3xl p-12 text-center text-xs text-slate-400">
+              No questions found. Click &ldquo;Refresh Bank&rdquo; to generate interview items.
             </div>
           )}
         </div>
@@ -398,4 +397,3 @@ export const InterviewSimulator: React.FC<InterviewSimulatorProps> = ({
     </div>
   );
 };
-
